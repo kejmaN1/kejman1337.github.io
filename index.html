@@ -5,13 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kejman1337 | Profile</title>
     <style>
+        /* TŁO WIDEO */
+        #background-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+            object-fit: cover;
+        }
+
         body { 
-            background-image: url('rose.jpg'); 
-            background-size: cover; 
-            background-position: center; 
-            background-attachment: fixed; 
-            background-repeat: no-repeat; 
-            
             color: white; 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             display: flex; 
@@ -20,28 +25,33 @@
             min-height: 100vh; 
             margin: 0; 
             padding: 20px;
+            background-color: black;
         }
 
         .main-wrapper {
             display: flex;
             gap: 20px;
-            max-width: 900px;
+            max-width: 1200px;
             width: 100%;
             flex-wrap: wrap;
             justify-content: center;
+            position: relative;
+            z-index: 1;
         }
 
-        /* POPRAWIONE BOKSY - EFEKT PRZEZROCZYSTOŚCI */
+        /* STYL BOKSÓW (GLASSMORPHISM) */
         .container { 
-            background: rgba(26, 26, 26, 0.65); /* 0.65 to poziom przezroczystości */
-            backdrop-filter: blur(10px); /* Rozmycie tła pod boksem */
-            -webkit-backdrop-filter: blur(10px); /* Wsparcie dla Safari */
+            background: rgba(26, 26, 26, 0.65);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             padding: 30px; 
             border-radius: 20px; 
-            border: 1px solid rgba(255, 255, 255, 0.1); /* Delikatna, jasna krawędź */
+            border: 1px solid rgba(255, 255, 255, 0.1); 
             text-align: center; 
             width: 320px; 
             box-shadow: 0 20px 50px rgba(0,0,0,0.6); 
+            display: flex;
+            flex-direction: column;
         }
 
         .profile-img {
@@ -49,7 +59,7 @@
             height: 190px; 
             border-radius: 50%; 
             border: 2px solid #f6ff00; 
-            margin-bottom: 15px;
+            margin: 0 auto 15px auto;
             object-fit: cover;
         }
 
@@ -58,8 +68,6 @@
         p { color: #ccc; font-size: 14px; margin-bottom: 25px; }
 
         .links { display: flex; flex-direction: column; gap: 15px; }
-        
-        /* PRZEZROCZYSTE PRZYCISKI */
         .links a { 
             background: rgba(40, 40, 40, 0.5); 
             color: white; 
@@ -91,10 +99,25 @@
             color: #f6ff00; 
             font-weight: bold; 
             text-align: right;
+            padding-left: 10px;
         }
+
+        /* SEKCA MUZYKI */
+        .music-player {
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .song-info { color: #f6ff00; font-weight: bold; margin-bottom: 10px; font-size: 14px; }
+        audio { width: 100%; height: 30px; filter: invert(100%); opacity: 0.7; }
+
     </style>
 </head>
 <body>
+
+    <video autoplay loop muted playsinline id="background-video">
+        <source src="bg.mp4" type="video/mp4">
+    </video>
 
     <div class="main-wrapper">
         
@@ -116,7 +139,7 @@
                 <li>CPU: <span>AMD Ryzen 7 9800X3D</span></li>
                 <li>GPU: <span>RTX 5070</span></li>
                 <li>RAM: <span>F5-6000J3038F16GX2-TZ5NR</span></li>
-                <li>MYSZKA: <span>Zowie EC1-DW / Superlight 2 DEX</span></li>
+                <li>MYSZKA: <span>Zowie EC1-DW GLOSSY / SUPERLIGHT 2 DEX</span></li>
                 <li>KLAWIATURA: <span>LOGITECH G Pro X TKL </span></li>
                 <li>SŁUCHAWKI: <span>Logitech G Pro X</span></li>
                 <li>PODKŁADKA: <span>LGG Saturn PRO XSOFT</span></li>
@@ -124,9 +147,11 @@
             </ul>
             <p style="margin-top: 20px; margin-bottom: 0;">𝑆𝐸𝑇𝑇𝐼𝑁𝐺𝑆</p>
             <div class="links" style="margin-top: 10px;">
-                <a href="https://settings.gg/user/911630993/cs2" style="font-size: 12px; padding: 8px;">CONFIG DOWNLOAD</a>
+                <a href="https://settings.gg/user/911630993/cs2" target="_blank" style="font-size: 12px; padding: 8px;">CONFIG DOWNLOAD</a>
             </div>
         </div>
+
+        
 
     </div>
 
