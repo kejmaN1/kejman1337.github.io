@@ -167,3 +167,38 @@
             </div>
         </div>
     </div>
+<div style="display:none">
+    <div id="player"></div>
+</div>
+
+<script>
+    // 1. Ładowanie API YouTube
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    var player;
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+            height: '0',
+            width: '0',
+            // TUTAJ WKLEJ ID SWOJEJ PIOSENKI Z YT (to co po v=)
+            videoId: 'liZm1im2erU', 
+            playerVars: {
+                'autoplay': 1,
+                'loop': 1,
+                'playlist': 'liZm1im2erU' // ID musi być tu powtórzone dla pętli
+            },
+            events: {
+                'onReady': onPlayerReady
+            }
+        });
+    }
+
+    function onPlayerReady(event) {
+        // USTAWIENIE GŁOŚNOŚCI (0-100) - Ustawiłem na 15, żeby grało cicho
+        event.target.setVolume(15);
+        event.target.playVideo();
+    }
+</script>
