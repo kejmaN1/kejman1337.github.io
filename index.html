@@ -23,7 +23,7 @@
             color: white; 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             display: flex; 
-            flex-direction: column; /* Ustawienie pionowe dla wrapperów */
+            flex-direction: column; 
             justify-content: center; 
             align-items: center; 
             min-height: 100vh; 
@@ -42,7 +42,7 @@
             justify-content: center;
             position: relative;
             z-index: 1;
-            margin-bottom: 30px; /* Odstęp od Spotify */
+            margin-bottom: 25px; /* Odstęp od Spotify */
         }
 
         /* STYL BOKSÓW Z RUCHOMYM NEONEM */
@@ -88,19 +88,18 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* SPOTIFY WRAPPER */
+        /* SPOTIFY WIDGET */
         .spotify-wrapper {
             position: relative;
             z-index: 1;
             width: 100%;
-            max-width: 680px; /* Szerokość dopasowana do dwóch boksów powyżej */
+            max-width: 680px;
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             border: 1px solid rgba(246, 255, 0, 0.2);
         }
 
-        /* RESZTA STYLÓW */
         .profile-img {
             width: 180px; 
             height: 180px; 
@@ -111,7 +110,7 @@
             box-shadow: 0 0 20px var(--neon-yellow);
         }
 
-        h1 { color: var(--neon-yellow); text-shadow: 0 0 10px var(--neon-yellow); margin-bottom: 5px; }
+        h1 { color: var(--neon-yellow); text-shadow: 0 0 10px var(--neon-yellow); margin-bottom: 5px; font-weight: 900; }
         h2 { color: var(--neon-yellow); border-bottom: 2px solid rgba(246, 255, 0, 0.3); padding-bottom: 10px; margin-top: 0; }
         
         .links { display: flex; flex-direction: column; gap: 12px; }
@@ -125,7 +124,7 @@
             transition: 0.3s; 
             border: 1px solid rgba(255, 255, 255, 0.05); 
         }
-        .links a:hover { background: var(--neon-yellow); color: #000; box-shadow: 0 0 15px var(--neon-yellow); }
+        .links a:hover { background: var(--neon-yellow); color: #000; box-shadow: 0 0 15px var(--neon-yellow); transform: scale(1.02); }
 
         .specs-list { text-align: left; list-style: none; padding: 0; margin: 0; }
         .specs-list li { margin-bottom: 10px; font-size: 13px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding-bottom: 5px; display: flex; justify-content: space-between; }
