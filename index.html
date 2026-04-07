@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KKEEJJMMAANN</title>
+    <title>KKEEJJMMANN/SETTINGS/SOCIALE</title>
     <style>
         :root {
-            /* Tutaj możesz zmienić kolor neonu (np. na #f6ff00 dla żółtego) */
-            --neon-color: #ff0000; 
+            --neon-yellow: #f6ff00; /* Główny kolor neonu */
+            --bg-dark: #0a0a0a;    /* Ciemne tło boksów */
         }
 
         #background-video {
@@ -30,12 +30,13 @@
             margin: 0; 
             padding: 20px;
             background-color: black;
+            overflow-x: hidden;
         }
 
         .main-wrapper {
             display: flex;
-            gap: 30px;
-            max-width: 900px;
+            gap: 40px;
+            max-width: 1000px;
             width: 100%;
             flex-wrap: wrap;
             justify-content: center;
@@ -43,63 +44,123 @@
             z-index: 1;
         }
 
-        /* BOKSY Z EFEKTEM NEONU */
+        /* GŁÓWNY STYL KONTENERA Z RUCHOMYM NEONEM 
+           Używamy pseudo-elementów ::before i ::after do stworzenia animowanej warstwy pod spodem.
+        */
         .container { 
-            background: rgba(26, 26, 26, 0.5); 
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            position: relative;
+            background: rgba(10, 10, 10, 0.75); /* Ciemne, półprzezroczyste tło */
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             padding: 30px; 
             border-radius: 20px; 
             text-align: center; 
             width: 320px; 
             display: flex;
             flex-direction: column;
+            overflow: hidden; /* Ukrywa wystający gradient */
             
-            /* NEONOWY BORDER I CIEŃ */
-            border: 2px solid var(--neon-color);
-            box-shadow: 0 0 10px var(--neon-color), 
-                        0 0 20px rgba(255, 0, 0, 0.2), 
-                        inset 0 0 10px rgba(255, 0, 0, 0.2);
-            
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            /* Statyczny, bazowy cień */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            transition: transform 0.3s ease;
         }
 
-        .container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 20px var(--neon-color), 
-                        0 0 40px rgba(255, 0, 0, 0.4);
+        /* Warstwa animowanego neonu pod spodem */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            /* Gradient tworzący "pasek" neonu */
+            background: conic-gradient(
+                transparent, 
+                var(--neon-yellow), 
+                transparent 30%
+            );
+            animation: rotateNeon 4s linear infinite; /* Prędkość ruchu */
+            z-index: -2;
         }
+
+        /* Wewnętrzna warstwa ciemnego tła, aby neon był tylko na krawędziach */
+        .container::after {
+            content: '';
+            position: absolute;
+            inset: 3px; /* Grubość krawędzi neonu */
+            background: rgba(10, 10, 10, 0.9);
+            border-radius: 17px; /* Nieco mniejszy radius niż kontener */
+            z-index: -1;
+        }
+
+        /* EFEKT NAJECHANIA MYSZKĄ */
+        .container:hover {
+            transform: translateY(-8px) scale(1.02);
+            /* Zwiększona poświata na hover */
+            box-shadow: 0 0 30px rgba(246, 255, 0, 0.5), 
+                        0 20px 50px rgba(0,0,0,0.9);
+        }
+
+        /* ANIMACJA OBROTU NEONU */
+        @keyframes rotateNeon {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* --- STYLIZACJA ELEMENTÓW WEWNĄTRZ --- */
 
         .profile-img {
-            width: 190px; 
-            height: 190px; 
+            width: 180px; 
+            height: 180px; 
             border-radius: 50%; 
-            border: 2px solid var(--neon-color); 
+            border: 3px solid var(--neon-yellow); 
             margin: 0 auto 15px auto;
             object-fit: cover;
-            /* Neonowa poświata wokół zdjęcia */
-            box-shadow: 0 0 15px var(--neon-color);
+            /* Poświata wokół zdjęcia */
+            box-shadow: 0 0 20px var(--neon-yellow);
+            position: relative;
+            z-index: 2;
         }
 
-        h1 { color: var(--neon-color); font-size: 24px; margin-bottom: 5px; text-shadow: 0 0 10px var(--neon-color); }
-        h2 { color: var(--neon-color); font-size: 20px; margin-top: 0; margin-bottom: 20px; border-bottom: 1px solid rgba(255, 0, 0, 0.3); padding-bottom: 10px; }
-        p { color: #ccc; font-size: 14px; margin-bottom: 25px; }
+        h1 { 
+            color: var(--neon-yellow); 
+            font-size: 26px; 
+            margin-bottom: 5px; 
+            text-shadow: 0 0 10px var(--neon-yellow); 
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+        
+        h2 { 
+            color: var(--neon-yellow); 
+            font-size: 20px; 
+            margin-top: 0; 
+            margin-bottom: 20px; 
+            border-bottom: 2px solid rgba(246, 255, 0, 0.3); 
+            padding-bottom: 10px; 
+            text-shadow: 0 0 5px var(--neon-yellow);
+        }
+        
+        p { color: #aaa; font-size: 14px; margin-bottom: 25px; }
 
-        .links { display: flex; flex-direction: column; gap: 15px; }
+        .links { display: flex; flex-direction: column; gap: 15px; position: relative; z-index: 2;}
         .links a { 
-            background: rgba(40, 40, 40, 0.5); 
-            color: white; 
+            background: rgba(20, 20, 20, 0.8); 
+            color: #fff; 
             text-decoration: none; 
-            padding: 12px; 
-            border-radius: 10px; 
+            padding: 14px; 
+            border-radius: 12px; 
             font-weight: bold; 
             transition: 0.3s; 
             border: 1px solid rgba(255, 255, 255, 0.05); 
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
         }
+        
         .links a:hover { 
-            background: var(--neon-color); 
+            background: var(--neon-yellow); 
             color: #000; 
-            box-shadow: 0 0 15px var(--neon-color);
+            box-shadow: 0 0 20px var(--neon-yellow), inset 0 0 10px rgba(0,0,0,0.2);
+            transform: scale(1.03);
         }
 
         .specs-list { 
@@ -107,21 +168,25 @@
             list-style: none; 
             padding: 0; 
             margin: 0; 
+            position: relative;
+            z-index: 2;
         }
         .specs-list li { 
             margin-bottom: 12px; 
             font-size: 13px; 
             color: #eee; 
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding-bottom: 5px;
+            padding-bottom: 6px;
             display: flex;
             justify-content: space-between;
+            align-items: center;
         }
         .specs-list li span { 
-            color: var(--neon-color); 
+            color: var(--neon-yellow); 
             font-weight: bold; 
             text-align: right;
             padding-left: 10px;
+            text-shadow: 0 0 3px var(--neon-yellow);
         }
     </style>
 </head>
@@ -148,18 +213,18 @@
         <div class="container">
             <h2>🖥️ 𝗦𝗣𝗘𝗖𝗦</h2>
             <ul class="specs-list">
-                <li>CPU: <span>AMD Ryzen 7 9800X3D</span></li>
+                <li>CPU: <span>Ryzen 7 9800X3D</span></li>
                 <li>GPU: <span>RTX 5070</span></li>
-                <li>RAM: <span>F5-6000J3038F16GX2-TZ5NR</span></li>
+                <li>RAM: <span>F5-6000J3038F16GX2</span></li>
                 <li>MYSZKA: <span>Zowie EC1-DW / SUPERLIGHT 2 DEX</span></li>
                 <li>KLAWIATURA: <span>LOGITECH G Pro X TKL </span></li>
                 <li>SŁUCHAWKI: <span>Logitech G Pro X</span></li>
-                <li>PODKŁADKA: <span>LGG Saturn PRO XSOFT</span></li>
-                <li>MONITOR: <span>BenQ ZOWIE XL2540K</span></li>
+                <li>PODKŁADKA: <span>LGG Saturn PRO</span></li>
+                <li>MONITOR: <span>ZOWIE XL2540K</span></li>
             </ul>
-            <p style="margin-top: 20px; margin-bottom: 0;">𝑆𝐸𝑇𝑇𝐼𝑁𝐺𝑆</p>
+            <p style="margin-top: 20px; margin-bottom: 0; color: #888;">𝑆𝐸𝑇𝑇𝐼𝑁𝐺𝑆</p>
             <div class="links" style="margin-top: 10px;">
-                <a href="https://settings.gg/user/911630993/cs2" target="_blank" style="font-size: 12px; padding: 8px;">CONFIG DOWNLOAD</a>
+                <a href="https://settings.gg/user/911630993/cs2" target="_blank" style="font-size: 12px; padding: 10px;">CONFIG DOWNLOAD</a>
             </div>
         </div>
 
