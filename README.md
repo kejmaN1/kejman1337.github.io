@@ -1,2 +1,53 @@
-# kejman1337.github.io
-test page
+<!doctype html>
+<html>
+  <head>
+    <title>User</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="MY PC SPECS"/>
+    <meta name="theme-color" content="#fff" />
+    <meta name="og:type" content="website" />
+    <meta name="og:title" content="User"/>
+    <meta name="keywords" content="User keywords"/>
+    <meta name="og:url" content="yourdomain.com" />
+    <meta name="og:description" content="Your Description"/>
+    <link rel="stylesheet" href="./main.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <img src="./images/profile.jpg" />
+         <a href="">
+          <h1>@User</h1>
+	</a>
+       <p>My PC specs</p>
+      </header>
+      <ul>
+        <li>
+          <a href="[https://www.youtube.com](https://www.youtube.com/@kejmaN7)/">
+            <img src="./images/youtube.svg" alt="YouTube" width="20" />
+            YouTube
+          </a>
+        </li>
+	<li>
+	  <a href="https://www.tiktok.com/">
+	    <img src="./images/tiktok.svg" alt="Tiktok" width="20" />
+	    Tiktok
+	  </a>
+	</li>
+        <li>
+          <a href="https://twitter.com/">
+            <img src="./images/twitter.svg" alt="Twitter" width="20" />
+            Twitter
+          </a>
+        </li>
+	<li>
+	  <a href="https://www.instagram.com/">
+	    <img src="./images/instagram.svg" alt="Instagram" width="20" />
+	    Instagram
+	  </a>
+	</li>
+      </ul>
+     <footer>Made with 🍯 by BearCodes</footer>
+    </main>
+  </body>
+</html>
