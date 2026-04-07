@@ -1,151 +1,135 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kejman1337 | Profile</title>
-    <style>
-        /* Styl dla tła wideo */
-        #background-video {
-            position: fixed;
-            right: 0;
-            bottom: 0;
-            min-width: 100%;
-            min-height: 100%;
-            z-index: -1; /* To jest kluczowe! Ustawia wideo za resztą strony */
-            object-fit: cover;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kejman1337 | Profile</title>
+    <style>
+       body { 
+            background-image: url('pobierz.gif'); /* Ścieżka do Twojego GIFa */
+            background-size: cover; /* Sprawia, że tło wypełnia cały ekran */
+            background-position: center; /* Wyśrodkowuje tło */
+            background-attachment: fixed; /* Tło nie przewija się wraz ze stroną */
+            background-repeat: no-repeat; /* Tło nie powtarza się */
+            
+            /* Twoje poprzednie style dla body */
+            color: white; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            padding: 20px;
+        }
 
-        /* Styl dla body (bez tła, żeby wideo było widoczne) */
-        body { 
-            color: white; 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            min-height: 100vh; 
-            margin: 0; 
-            padding: 20px;
-            background-color: black; /* Rezerwowy kolor tła */
-        }
+        /* Główny kontener trzymający obie karty obok siebie */
+        .main-wrapper {
+            display: flex;
+            gap: 20px;
+            max-width: 900px;
+            width: 100%;
+            flex-wrap: wrap; /* Dzięki temu na telefonie boks ze specyfikacją wskoczy pod spód */
+            justify-content: center;
+        }
 
-        /* Główny kontener trzymający obie karty obok siebie */
-        .main-wrapper {
-            display: flex;
-            gap: 20px;
-            max-width: 900px;
-            width: 100%;
-            flex-wrap: wrap; /* Dzięki temu na telefonie boks ze specyfikacją wskoczy pod spód */
-            justify-content: center;
-            position: relative; /* Żeby boksy były nad wideo */
-            z-index: 1;
-        }
+        /* Wspólny styl dla obu boksów */
+        .container { 
+            background: #1a1a1a; 
+            padding: 30px; 
+            border-radius: 20px; 
+            border: 1px solid #333; 
+            text-align: center; 
+            width: 320px; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8); 
+        }
 
-        /* Wspólny styl dla obu boksów (z przezroczystością) */
-        .container { 
-            background: rgba(26, 26, 26, 0.6); 
-            backdrop-filter: blur(10px); 
-            -webkit-backdrop-filter: blur(10px); 
-            padding: 30px; 
-            border-radius: 20px; 
-            border: 1px solid rgba(246, 255, 0, 0.2); 
-            text-align: center; 
-            width: 320px; 
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8); 
-        }
+        /* Styl obrazka */
+        .profile-img {
+            width: 190px; 
+            height: 190px; 
+            border-radius: 50%; 
+            border: 2px solid #f6ff00; 
+            margin-bottom: 15px;
+            object-fit: cover;
+        }
 
-        /* Styl obrazka */
-        .profile-img {
-            width: 190px; 
-            height: 190px; 
-            border-radius: 50%; 
-            border: 2px solid #f6ff00; 
-            margin-bottom: 15px;
-            object-fit: cover;
-            box-shadow: 0 0 20px rgba(246, 255, 0, 0.3);
-        }
+        h1 { color: #f6ff00; font-size: 24px; margin-bottom: 5px; }
+        h2 { color: #f6ff00; font-size: 20px; margin-top: 0; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        p { color: #888; font-size: 14px; margin-bottom: 25px; }
 
-        h1 { color: #f6ff00; font-size: 24px; margin-bottom: 5px; }
-        h2 { color: #f6ff00; font-size: 20px; margin-top: 0; margin-bottom: 20px; border-bottom: 1px solid rgba(246, 255, 0, 0.3); padding-bottom: 10px; }
-        p { color: #888; font-size: 14px; margin-bottom: 25px; }
+        /* Linki */
+        .links { display: flex; flex-direction: column; gap: 15px; }
+        .links a { 
+            background: #252525; 
+            color: white; 
+            text-decoration: none; 
+            padding: 12px; 
+            border-radius: 10px; 
+            font-weight: bold; 
+            transition: 0.3s; 
+            border: 1px solid #444; 
+        }
+        .links a:hover { background: #f6ff00; color: #000; transform: scale(1.05); }
 
-        /* Linki */
-        .links { display: flex; flex-direction: column; gap: 15px; }
-        .links a { 
-            background: rgba(37, 37, 37, 0.7); 
-            color: white; 
-            text-decoration: none; 
-            padding: 12px; 
-            border-radius: 10px; 
-            font-weight: bold; 
-            transition: 0.3s; 
-            border: 1px solid rgba(68, 68, 68, 0.5); 
-        }
-        .links a:hover { background: #f6ff00; color: #000; transform: scale(1.05); }
-
-        /* Lista specyfikacji */
-        .specs-list { 
-            text-align: left; 
-            list-style: none; 
-            padding: 0; 
-            margin: 0; 
-        }
-        .specs-list li { 
-            margin-bottom: 12px; 
-            font-size: 14px; 
-            color: #ccc; 
-            border-bottom: 1px solid rgba(246, 255, 0, 0.1);
-            padding-bottom: 5px;
-            display: flex;
-            justify-content: space-between;
-        }
-        .specs-list li span { 
-            color: #f6ff00; 
-            font-weight: bold; 
-            text-align: right;
-            padding-left: 10px;
-        }
-    </style>
+        /* Lista specyfikacji */
+        .specs-list { 
+            text-align: left; 
+            list-style: none; 
+            padding: 0; 
+            margin: 0; 
+        }
+        .specs-list li { 
+            margin-bottom: 12px; 
+            font-size: 14px; 
+            color: #ccc; 
+            border-bottom: 1px solid #252525;
+            padding-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .specs-list li span { 
+            color: #f6ff00; 
+            font-weight: bold; 
+            text-align: right;
+        }
+    </style>
 </head>
 <body>
 
-    <video autoplay loop muted playsinline id="background-video">
-        <source src="pobierz.gif" type="video/webm">
-        </video>
+    <div class="main-wrapper">
+        
+        <div class="container">
+            <img src="foto.jpg" alt="Profile" class="profile-img">
+            <h1>𝗞𝗞𝗘𝗘𝗝𝗝𝗠𝗠𝗔𝗔𝗡𝗡</h1>
+            <p>𝑆𝑂𝐶𝐼𝐴𝐿𝐸</p>
+            <div class="links">
+                <a href="https://www.youtube.com/@kejmaN7" target="_blank">YOUTUBE</a>
+                <a href="https://steamcommunity.com/id/k3iman" target="_blank">𝗦𝗧𝗘𝗔𝗠</a>
+                <a href="https://www.faceit.com/en/players/kjmn-" target="_blank">𝗙𝗔𝗖𝗘𝗜𝗧</a>
+                <a href="https://www.twitch.tv/kejman_" target="_blank">𝗧𝗪𝗜𝗧𝗖𝗛</a>
+            </div>
+        </div>
 
-    <div class="main-wrapper">
-        
-        <div class="container">
-            <img src="foto.jpg" alt="Profile" class="profile-img">
-            <h1>𝗞𝗞𝗘𝗘𝗝𝗝𝗠𝗠𝗔𝗔𝗡𝗡</h1>
-            <p>𝑆𝑂𝐶𝐼𝐴𝐿𝐸</p>
-            <div class="links">
-                <a href="https://www.youtube.com/@kejmaN7" target="_blank">YOUTUBE</a>
-                <a href="https://steamcommunity.com/id/k3iman" target="_blank">𝗦𝗧𝗘𝗔𝗠</a>
-                <a href="https://www.faceit.com/en/players/kjmn-" target="_blank">𝗙𝗔𝗖𝗘𝗜𝗧</a>
-                <a href="https://www.twitch.tv/kejman_" target="_blank">𝗧𝗪𝗜𝗧𝗖𝗛</a>
-            </div>
-        </div>
+        <div class="container">
+            <h2>🖥️ 𝗦𝗣𝗘𝗖𝗦</h2>
+            <ul class="specs-list">
+                <li>CPU: <span>AMD Ryzen 7 9800X3D</span></li>
+                <li>GPU: <span>RTX 5070</span></li>
+                <li>RAM: <span>F5-6000J3038F16GX2-TZ5NR</span></li>
+                <li>MYSZKA: <span>Zowie EC1-DW Glossy/Superlight 2 DEX/Rapoo VT3 Max gen.2</span></li>
+                <li>KLAWIATURA: <span>LOGITECH G Pro X TKL </span></li>
+                <li>SŁUCHAWKI: <span>Logitech G Pro X</span></li>
+                <li>PODKŁADKA: <span>LGG Saturn PRO XSOFT</span></li>
+                <li>MONITOR: <span>BenQ ZOWIE XL2540K</span></li>
+            </ul>
+            <p style="margin-top: 20px; margin-bottom: 0;">𝑆𝐸𝑇𝑇𝐼𝑁𝐺𝑆</p>
+            <div class="links" style="margin-top: 10px;">
+                <a href="https://settings.gg/user/911630993/cs2" style="font-size: 12px; padding: 8px;">CONFIG DOWNLOAD</a>
+            </div>
+        </div>
 
-        <div class="container">
-            <h2>🖥️ 𝗦𝗣𝗘𝗖𝗦</h2>
-            <ul class="specs-list">
-                <li>CPU: <span>AMD Ryzen 7 9800X3D</span></li>
-                <li>GPU: <span>RTX 5070</span></li>
-                <li>RAM: <span>F5-6000J3038F16GX2-TZ5NR</span></li>
-                <li>MYSZKA: <span>Zowie EC1-DW / Superlight 2 DEX</span></li>
-                <li>KLAWIATURA: <span>LOGITECH G Pro X TKL </span></li>
-                <li>SŁUCHAWKI: <span>Logitech G Pro X</span></li>
-                <li>PODKŁADKA: <span>LGG Saturn PRO XSOFT</span></li>
-                <li>MONITOR: <span>BenQ ZOWIE XL2540K</span></li>
-            </ul>
-            <p style="margin-top: 20px; margin-bottom: 0;">𝑆𝐸𝑇𝑇𝐼𝑁𝐺𝑆</p>
-            <div class="links" style="margin-top: 10px;">
-                <a href="https://settings.gg/user/911630993/cs2" target="_blank" style="font-size: 12px; padding: 8px;">CONFIG DOWNLOAD</a>
-            </div>
-        </div>
-
-    </div>
+    </div>
 
 </body>
 </html>
