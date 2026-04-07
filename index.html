@@ -171,8 +171,9 @@
     <div id="player"></div>
 </div>
 
+<div id="player" style="display:none"></div>
+
 <script>
-    // 1. Ładowanie API YouTube
     var tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -183,22 +184,38 @@
         player = new YT.Player('player', {
             height: '0',
             width: '0',
-            // TUTAJ WKLEJ ID SWOJEJ PIOSENKI Z YT (to co po v=)
             videoId: 'liZm1im2erU', 
             playerVars: {
                 'autoplay': 1,
                 'loop': 1,
-                'playlist': 'liZm1im2erU' // ID musi być tu powtórzone dla pętli
+                'playlist': 'liZm1im2erU',
+                'controls': 0,
+                'showinfo': 0,
+                'autohide': 1,
+                'modestbranding': 1
             },
             events: {
-                'onReady': onPlayerReady
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
             }
         });
     }
 
     function onPlayerReady(event) {
-        // USTAWIENIE GŁOŚNOŚCI (0-100) - Ustawiłem na 15, żeby grało cicho
+        // Przeglądarki często blokują playVideo() z dźwiękiem na starcie
         event.target.setVolume(15);
         event.target.playVideo();
+        
+        // KLUCZOWE: Dodajemy "odblokowanie" dźwięku przy dowolnym kliknięciu na stronie
+        document.body.addEventListener('click', function() {
+            player.playVideo();
+        }, { once: true }); // wykona się tylko raz
+    }
+
+    function onPlayerStateChange(event) {
+        // Zapewnia zapętlenie, jeśli playlist nie zadziała
+        if (event.data === YT.PlayerState.ENDED) {
+            player.playVideo();
+        }
     }
 </script>
