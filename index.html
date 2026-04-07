@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kejman1337 | Profile</title>
     <style>
-        /* TŁO WIDEO */
+        /* 1. TŁO WIDEO - Musi być ustawione na sztywno pod spodem */
         #background-video {
             position: fixed;
             right: 0;
             bottom: 0;
             min-width: 100%;
             min-height: 100%;
-            z-index: -1;
-            object-fit: cover;
+            z-index: -1; /* Wysyła wideo na sam spód */
+            object-fit: cover; /* Gwarantuje wypełnienie ekranu bez rozciągania */
         }
 
         body { 
@@ -25,24 +25,24 @@
             min-height: 100vh; 
             margin: 0; 
             padding: 20px;
-            background-color: black;
+            background-color: black; /* Kolor zapasowy, zanim wideo się załaduje */
         }
 
         .main-wrapper {
             display: flex;
             gap: 20px;
-            max-width: 1200px;
+            max-width: 900px;
             width: 100%;
             flex-wrap: wrap;
             justify-content: center;
             position: relative;
-            z-index: 1;
+            z-index: 1; /* Wyciąga boksy nad wideo */
         }
 
-        /* STYL BOKSÓW (GLASSMORPHISM) */
+        /* 2. STYL BOKSÓW - PRZEZROCZYSTOŚĆ 50% */
         .container { 
-            background: rgba(26, 26, 26, 0.65);
-            backdrop-filter: blur(10px);
+            background: rgba(26, 26, 26, 0.5); /* 0.5 = 50% przezroczystości */
+            backdrop-filter: blur(10px); /* Rozmycie tła pod boksami */
             -webkit-backdrop-filter: blur(10px);
             padding: 30px; 
             border-radius: 20px; 
@@ -67,6 +67,7 @@
         h2 { color: #f6ff00; font-size: 20px; margin-top: 0; margin-bottom: 20px; border-bottom: 1px solid rgba(246, 255, 0, 0.3); padding-bottom: 10px; }
         p { color: #ccc; font-size: 14px; margin-bottom: 25px; }
 
+        /* LINKI */
         .links { display: flex; flex-direction: column; gap: 15px; }
         .links a { 
             background: rgba(40, 40, 40, 0.5); 
@@ -78,8 +79,13 @@
             transition: 0.3s; 
             border: 1px solid rgba(255, 255, 255, 0.05); 
         }
-        .links a:hover { background: #f6ff00; color: #000; transform: scale(1.05); }
+        .links a:hover { 
+            background: #f6ff00; 
+            color: #000; 
+            transform: scale(1.05); 
+        }
 
+        /* SPECYFIKACJA */
         .specs-list { 
             text-align: left; 
             list-style: none; 
@@ -88,7 +94,7 @@
         }
         .specs-list li { 
             margin-bottom: 12px; 
-            font-size: 14px; 
+            font-size: 13px; 
             color: #eee; 
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             padding-bottom: 5px;
@@ -101,16 +107,6 @@
             text-align: right;
             padding-left: 10px;
         }
-
-        /* SEKCA MUZYKI */
-        .music-player {
-            margin-top: auto;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .song-info { color: #f6ff00; font-weight: bold; margin-bottom: 10px; font-size: 14px; }
-        audio { width: 100%; height: 30px; filter: invert(100%); opacity: 0.7; }
-
     </style>
 </head>
 <body>
@@ -139,7 +135,7 @@
                 <li>CPU: <span>AMD Ryzen 7 9800X3D</span></li>
                 <li>GPU: <span>RTX 5070</span></li>
                 <li>RAM: <span>F5-6000J3038F16GX2-TZ5NR</span></li>
-                <li>MYSZKA: <span>Zowie EC1-DW GLOSSY / SUPERLIGHT 2 DEX</span></li>
+                <li>MYSZKA: <span>Zowie EC1-DW / SUPERLIGHT 2 DEX</span></li>
                 <li>KLAWIATURA: <span>LOGITECH G Pro X TKL </span></li>
                 <li>SŁUCHAWKI: <span>Logitech G Pro X</span></li>
                 <li>PODKŁADKA: <span>LGG Saturn PRO XSOFT</span></li>
@@ -150,8 +146,6 @@
                 <a href="https://settings.gg/user/911630993/cs2" target="_blank" style="font-size: 12px; padding: 8px;">CONFIG DOWNLOAD</a>
             </div>
         </div>
-
-        
 
     </div>
 
